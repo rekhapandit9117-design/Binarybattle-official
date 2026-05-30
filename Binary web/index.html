@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary battle | Competitive Gaming Hub</title>
+    
+    <!-- Importing Google Fonts for a Gaming Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for Theme */
+        :root {
+            --bg-color: #030a16;
+            --surface-color: #081226;
+            --text-main: #e0e7ff;
+            --text-muted: #8c9ebf;
+            --neon-blue: #00f3ff;
+            --dark-blue: #005bb5;
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Glowing Neon Utilities */
+        .text-neon {
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px rgba(0, 243, 255, 0.5), 
+                         0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(3, 10, 22, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #081a3d 0%, var(--bg-color) 70%);
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 70px);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* Neon Button */
+        .neon-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--bg-color);
+            background-color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            border-radius: 4px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-blue), 
+                        0 0 20px rgba(0, 243, 255, 0.4), 
+                        inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .neon-btn:hover {
+            background-color: transparent;
+            color: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue), 
+                        0 0 40px rgba(0, 243, 255, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 5%;
+            background-color: var(--bg-color);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #ffffff;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--surface-color);
+            padding: 40px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 243, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(90deg, #050c1b, #091936, #050c1b);
+            padding: 60px 5%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: radial-gradient(circle at bottom, #081a3d 0%, var(--bg-color) 100%);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #02050b;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hidden on mobile for simplicity */
+            }
+            .hero {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">BINARY<span class="text-neon">BATTLE</span></a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#download">Download</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Welcome to the <br><span class="text-neon">Binary Battle</span></h1>
+        <p>Convert your reflexes and strategies into real rewards. Join the most advanced competitive gaming platform for tactical shooters, MOBAs, and battle royales.</p>
+        <!-- The Download Button -->
+        <a href="#download" class="neon-btn" onclick="startDownload(event)">Download APK</a>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Why Choose <span class="text-neon">Binary Battle?</span></h2>
+        <div class="feature-grid">
+            
+            <div class="feature-card">
+                <h3 class="text-neon">Anti-Cheat Engine</h3>
+                <p>Fair play is our priority. Our custom-built, military-grade anti-cheat systems ensure every match is decided strictly by skill.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 class="text-neon">Instant Rewards</h3>
+                <p>No waiting periods. Withdraw your tournament winnings instantly to your digital wallet or bank account with zero friction.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 class="text-neon">Zero Latency</h3>
+                <p>Powered by next-gen cloud servers, ensuring ping spikes never ruin your clutch moments. Play with absolute fluid precision.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 class="text-neon">Global Leaderboards</h3>
+                <p>Track your stats, climb the global ranking ladder, and build your reputation as an elite cyber gladiator.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number" id="stat1">500</div>
+            <div class="stat-label">Active Players</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="stat2">1k</div>
+            <div class="stat-label">Matches Hosted</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="stat3">₹500K</div>
+            <div class="stat-label">Rewards Distributed</div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="download" class="cta">
+        <h2 class="section-title">Ready to Dominate?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 20px;">Download the latest version of Binary Battle and start your journey today.</p>
+        <a href="#" class="neon-btn" onclick="startDownload(event)">Download APK</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Binary Battle Global. All rights reserved. Not affiliated with any third-party game publishers.</p>
+    </footer>
+
+    <!-- Script to make the download button actually function as a sample -->
+    <script>
+        function startDownload(event) {
+            event.preventDefault();
+            
+            // Create a dummy text file to act as the "App Download"
+            const dataText = "Thank you for downloading Binary Battle!\n\n(This is a placeholder file since this is a custom HTML template. In a real website, this button would link to your .apk or .exe file.)";
+            const blob = new Blob([dataText], { type: 'text/plain' });
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'https://example.com/binary-battle.apk'; // Simulating an installer file
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert("Your download has started!");
+        }
+    </script>
+
+</body>
+</html>
